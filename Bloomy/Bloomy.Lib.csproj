@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <Copyright>penumbra23</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageProjectUrl>https://github.com/penumbra23/Bloomy</PackageProjectUrl>
+    <PackageTags>bloom, bloom-filter, hash</PackageTags>
+    <Description>Fast C# implementation of bloom filters packed in a .NET Standard library.</Description>
   </PropertyGroup>
 
 </Project>
