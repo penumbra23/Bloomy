@@ -23,7 +23,7 @@ namespace Bloomy.Lib.Filter
 
         private uint Count { get; set; }
 
-        private uint HashNumber { get; }
+        public uint HashNumber { get; }
 
         public int Width { get; }
 
