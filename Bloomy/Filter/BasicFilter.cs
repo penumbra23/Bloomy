@@ -16,7 +16,7 @@ namespace Bloomy.Lib.Filter
             Width = width;
             HashFunction = hashFunction;
             Filter = new byte[(uint)Math.Ceiling((double)Width / 8)];
-            HashNumber = (uint)Math.Max(hashNumber, prefix.Length);
+            HashNumber = (uint)Math.Min(hashNumber, prefix.Length);
         }
 
         private byte[] Filter { get; set; }
@@ -49,7 +49,7 @@ namespace Bloomy.Lib.Filter
                     return new FilterResult(false, 1);
             }
 
-            return new FilterResult(true, Math.Pow((1 - Math.Exp((double)HashNumber * Count / Width)), HashNumber));
+            return new FilterResult(true, Math.Pow((1 - Math.Exp(-(double)HashNumber * Count / Width)), HashNumber));
         }
 
         private IHashProvider CreateHashAlgorithm(HashFunc func)
