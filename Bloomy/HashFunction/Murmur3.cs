@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 
 namespace Bloomy.Lib.HashFunction
 {
+    /// <summary>
+    /// Implementation of the Murmur3 hash function.
+    /// </summary>
     public class Murmur3 : IHashProvider
     {
         const int Seed = 144;

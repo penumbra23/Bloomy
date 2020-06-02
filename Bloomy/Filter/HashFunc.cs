@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Bloomy.Lib.Filter
+﻿namespace Bloomy.Lib.Filter
 {
+    /// <summary>
+    /// Chooses the given hash function.
+    /// </summary>
     public enum HashFunc
     {
         SHA256,
