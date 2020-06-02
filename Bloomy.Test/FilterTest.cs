@@ -1,7 +1,4 @@
 ﻿using Bloomy.Lib.Filter;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace Bloomy.Test
@@ -26,10 +23,10 @@ namespace Bloomy.Test
                 filter.Insert(str);
 
             foreach(string str in WordList)
-                Assert.True(filter.Check(str).Present);
+                Assert.True(filter.Check(str).Presence == BloomPresence.MightBeInserted);
 
             // This was brute-forced not to be in the set
-            Assert.False(filter.Check("notInThere4").Present);
+            Assert.True(filter.Check("notInThere5").Presence == BloomPresence.NotInserted);
         }
 
         [Fact]
@@ -40,13 +37,13 @@ namespace Bloomy.Test
                 filter.Insert(str);
 
             foreach (string str in WordList)
-                Assert.True(filter.Check(str).Present);
+                Assert.True(filter.Check(str).Presence == BloomPresence.MightBeInserted);
 
             // This was brute-forced not to be in the set
-            Assert.False(filter.Check("notInThere4").Present);
+            Assert.True(filter.Check("notInThere4").Presence == BloomPresence.NotInserted);
 
             // This was brute-forced to have matching bits although it's not in the set
-            Assert.True(filter.Check("notInThere11").Present);
+            Assert.True(filter.Check("notInThere11").Presence == BloomPresence.MightBeInserted);
         }
 
         [Fact]
@@ -57,13 +54,13 @@ namespace Bloomy.Test
                 filter.Insert(str);
 
             foreach (string str in WordList)
-                Assert.True(filter.Check(str).Present);
+                Assert.True(filter.Check(str).Presence == BloomPresence.MightBeInserted);
 
             // This was brute-forced not to be in the set
-            Assert.False(filter.Check("notInThere4").Present);
+            Assert.True(filter.Check("notInThere4").Presence == BloomPresence.NotInserted);
 
             // This was brute-forced to have matching bits although it's not in the set
-            Assert.True(filter.Check("notInThere11").Present);
+            Assert.True(filter.Check("notInThere11").Presence == BloomPresence.MightBeInserted);
         }
     }
 }

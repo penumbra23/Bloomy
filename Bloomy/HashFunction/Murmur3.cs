@@ -23,61 +23,41 @@ namespace Bloomy.Lib.HashFunction
             ulong final = Seed;
             uint streamLength = 0;
             int i = 0;
-            ulong k1 = 0;
+            ulong tmp = 0;
 
             while (i < value.Length)
             {
-                byte[] data = value.Skip(i).Take(4).ToArray();
+                byte[] data = value.Skip(i).Take(8).ToArray();
                 streamLength += (uint)data.Length;
                 switch (data.Length)
                 {
                     case 4:
-                        k1 = (ulong)
-                           (data[0]
-                          | data[1] << 8
-                          | data[2] << 16
-                          | data[3] << 24);
-
-                        k1 *= C1;
-                        k1 = Rotl64(k1, 15);
-                        k1 *= C2;
-
-                        final ^= k1;
-                        final = Rotl64(final, 13);
-                        final = final * 5 + C3;
+                        tmp = (ulong)(data[0] | data[1] << 8  | data[2] << 16 | data[3] << 24) * C1;
+                        tmp = Rotl64(tmp, 15) * C2;
+                        final ^= tmp;
+                        final = Rotl64(final, 13) * 5 + C3;
                         break;
                     case 3:
-                        k1 = (ulong)
-                           (data[0]
-                          | data[1] << 8
-                          | data[2] << 16);
-                        k1 *= C1;
-                        k1 = Rotl64(k1, 15);
-                        k1 *= C2;
-                        final ^= k1;
+                        tmp = (ulong)(data[0] | data[1] << 8 | data[2] << 16) * C1;
+                        tmp = Rotl64(tmp, 15) * C2;
+                        final ^= tmp;
                         break;
                     case 2:
-                        k1 = (ulong)
-                           (data[0]
-                          | data[1] << 8);
-                        k1 *= C1;
-                        k1 = Rotl64(k1, 15);
-                        k1 *= C2;
-                        final ^= k1;
+                        tmp = (ulong)(data[0] | data[1] << 8) * C1;
+                        tmp = Rotl64(tmp, 15) * C2;
+                        final ^= tmp;
                         break;
                     case 1:
-                        k1 = data[0];
-                        k1 *= C1;
-                        k1 = Rotl64(k1, 15);
-                        k1 *= C2;
-                        final ^= k1;
+                        tmp = data[0] * C1;
+                        tmp = Rotl64(tmp, 15) * C2;
+                        final ^= tmp;
                         break;
                 }
-                i += 4;
+                // Move 8 bytes forward
+                i += 8;
             }
 
-            final ^= streamLength;
-            final = Fmix64(final);
+            final = Fmix64(final ^ streamLength);
 
             return BitConverter.GetBytes(final);
         }

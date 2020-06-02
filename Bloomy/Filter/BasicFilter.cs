@@ -46,10 +46,10 @@ namespace Bloomy.Lib.Filter
                 (uint byteNo, uint bitPos) = calcBitPosition(value, i);
                 var mask = Filter[byteNo] & (1 << (int)(7 - bitPos % 8));
                 if (mask == 0)
-                    return new FilterResult(false, 1);
+                    return new FilterResult(BloomPresence.NotInserted, 1);
             }
 
-            return new FilterResult(true, Math.Pow((1 - Math.Exp(-(double)HashNumber * Count / Width)), HashNumber));
+            return new FilterResult(BloomPresence.MightBeInserted, Math.Pow((1 - Math.Exp(-(double)HashNumber * Count / Width)), HashNumber));
         }
 
         private IHashProvider CreateHashAlgorithm(HashFunc func)
