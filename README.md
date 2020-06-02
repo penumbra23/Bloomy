@@ -3,10 +3,13 @@
 
 Fast C# implementation of bloom filters packed in a .NET Standard library.
 
+![Nuget](https://img.shields.io/nuget/v/Bloomy.Lib)
+
 ## Introduction
 Bloom filters are probabilistic data structures aiming to eliminate entries from a data set at constant time. They use multiple hash functions to generate positions in a bitmap, so later on, at the check phase, non-zero bits that aren't found in the bitmap eliminate the given search vector. You can find example on how they work [here](https://llimllib.github.io/bloomfilter-tutorial/).
 
 To install the latest Bloomy package version into your project:
+
 `Install-Package Bloomy.Lib`
 
 ## Usage
