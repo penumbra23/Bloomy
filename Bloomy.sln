@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30104.148
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloomy.Lib", "Bloomy\Bloomy.Lib.csproj", "{B08822BB-B493-435C-8E40-B85F3FE6D1BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bloomy.Lib", "Bloomy\Bloomy.Lib.csproj", "{B08822BB-B493-435C-8E40-B85F3FE6D1BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloomy.Test", "Bloomy.Test\Bloomy.Test.csproj", "{2E7F86B7-9364-4D2D-8B8C-3F9C2F7D3757}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Bloomy.Test", "Bloomy.Test\Bloomy.Test.csproj", "{2E7F86B7-9364-4D2D-8B8C-3F9C2F7D3757}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bloomy.Benchmark", "Bloomy.Benchmark\Bloomy.Benchmark.csproj", "{656E24F4-6119-48D9-BEC7-90B3A2C47034}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2E7F86B7-9364-4D2D-8B8C-3F9C2F7D3757}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E7F86B7-9364-4D2D-8B8C-3F9C2F7D3757}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E7F86B7-9364-4D2D-8B8C-3F9C2F7D3757}.Release|Any CPU.Build.0 = Release|Any CPU
+		{656E24F4-6119-48D9-BEC7-90B3A2C47034}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{656E24F4-6119-48D9-BEC7-90B3A2C47034}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{656E24F4-6119-48D9-BEC7-90B3A2C47034}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{656E24F4-6119-48D9-BEC7-90B3A2C47034}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
