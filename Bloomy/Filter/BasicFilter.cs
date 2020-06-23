@@ -23,6 +23,20 @@ namespace Bloomy.Lib.Filter
         }
 
         /// <summary>
+        /// <see cref="BasicFilter"/> constructor exposing expected number and probability parameters.
+        /// </summary>
+        /// <param name="expectedNoItems">The number of items expected to be inserted into the filter.</param>
+        /// <param name="fpProb">Targeted probability of false positives showing up.</param>
+        /// <param name="hashFunction"><see cref="HashFunc"/> to use while inserting and checking.</param>
+        public BasicFilter(int expectedNoItems, double fpProb, HashFunc hashFunction = HashFunc.SHA256)
+        {
+            Width = (int)Math.Ceiling((expectedNoItems * Math.Log(fpProb)) / Math.Log(1 / Math.Pow(2, Math.Log(2))));
+            HashFunction = hashFunction;
+            Filter = new byte[(uint)Math.Ceiling((double)Width / 8)];
+            HashNumber = (uint)Math.Round((Width / expectedNoItems) * Math.Log(2));
+        }
+
+        /// <summary>
         /// Bloom filter bit array.
         /// </summary>
         private byte[] Filter { get; set; }
@@ -103,7 +117,9 @@ namespace Bloomy.Lib.Filter
         {
             var hash = CreateHashAlgorithm(HashFunction);
             var hashBytes = Encoding.ASCII.GetBytes(value);
-            hashBytes[0] += prefix[i];
+            // TODO: for now, only 256 hash functions are effective since we're only adding to the first byte
+            // add continuous looping
+            hashBytes[0] += (byte)(prefix[i % (byte)prefix.Length] + i);
             byte[] bytes = hash.ComputeHash(hashBytes).Append((byte)0x0).ToArray();
             return new BigInteger(bytes);
         }

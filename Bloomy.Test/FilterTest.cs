@@ -62,5 +62,24 @@ namespace Bloomy.Test
             // This was brute-forced to have matching bits although it's not in the set
             Assert.True(filter.Check("notInThere11").Presence == BloomPresence.MightBeInserted);
         }
+
+        [Fact]
+        public void BasicFilterWithPrecalculatedProb()
+        {
+            BasicFilter filter = new BasicFilter(40000, 1.0E-7);
+            foreach (string str in WordList)
+                filter.Insert(str);
+
+            foreach (string str in WordList)
+                Assert.True(filter.Check(str).Presence == BloomPresence.MightBeInserted);
+
+            // This was brute-forced not to be in the set
+            Assert.True(filter.Check("notInThere4").Presence == BloomPresence.NotInserted);
+
+            // This is inside the set
+            FilterResult res = filter.Check("radioimmunoelectrophoresis");
+            Assert.True(res.Presence == BloomPresence.MightBeInserted);
+            Assert.True(res.Probability <= 1.0E-7);
+        }
     }
 }
