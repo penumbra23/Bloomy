@@ -7,6 +7,8 @@
     <PackageProjectUrl>https://github.com/penumbra23/Bloomy</PackageProjectUrl>
     <PackageTags>bloom, bloom-filter, hash</PackageTags>
     <Description>Fast C# implementation of bloom filters packed in a .NET Standard library.</Description>
+    <Version>1.1.0</Version>
+    <RepositoryUrl>https://github.com/penumbra23/Bloomy</RepositoryUrl>
   </PropertyGroup>
 
 </Project>
